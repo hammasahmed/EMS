@@ -1,11 +1,10 @@
 
 import './App.css'
 
-function App() {
- 
-  <nav h-3 bg-pink-900 >
-
-  </nav>
+function App() {return(
+ <div>
+  <p >we will eat, world will earn</p>
+ </div>)
 }
 
 export default App
