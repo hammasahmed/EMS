@@ -1,38 +1,40 @@
-
 import React, { useState } from 'react';
+import logo from '../assets/logo.png';
 
-import logo from "../assets/logo.png"
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
-  return (
-    <nav className="bg-purple-100 p-4 w-full">
-      <div className="container flex justify-between items-center w-full">
-    <div className=""><img src={logo} alt="logo" className='h-10'/></div>
-        <div className="hidden md:flex space-x-4">
-          <a href="#" className="text-black">Home</a>
-          <a href="#" className="text-black">About</a>
-          <a href="#" className="text-black">Services</a>
-          <a href="#" className="text-black">Contact</a>
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    return (
+        <div className='main flex justify-between bg-purple-50 p-1 pb-2 pt-2'>
+            <div className="hamburger p-3 sm:hidden" onClick={toggleMenu}>
+                <div className="line w-3 h-0.5 m-0.5 bg-black"></div>
+                <div className="line w-3 h-0.5 m-0.5 bg-black"></div>
+                <div className="line w-3 h-0.5 m-0.5 bg-black"></div>
+            </div>
+            {!menuOpen && (
+                <div className="logo p-2 ">
+                    <img src={logo} alt="logo" className='h-5' />
+                </div>
+            )}
+            <div className={`features ${menuOpen ? 'flex' : 'hidden'} sm:flex flex-col sm:flex-row`}>
+                <ul className='flex flex-col items-center sm:flex-row  space-y-3 sm:space-y-0 sm:space-x-3 text-sm md:space-x-10'>
+                    <li className='hover:bg-purple-100 p-2 rounded-md'><a href="#">Home</a></li>
+                    <li className='hover:bg-purple-100 p-2 rounded-md'><a href="#">Venues</a></li>
+                    <li className='hover:bg-purple-100 p-2 rounded-md'><a href="#">Catering</a></li>
+                    <li className='hover:bg-purple-100 p-2 rounded-md'><a href="#">Reviews</a></li>
+                    <li className='hover:bg-purple-100 p-2 rounded-md'><a href="#">Contact Us</a></li>
+                    <li className='hover:bg-purple-100 p-2 rounded-md'><a href="#">Login</a></li>
+                </ul>
+            </div>
+            <div className="signup mr-3 mt-1 ">
+                <button className='bg-purple-300 p-1 text-sm rounded-xl pr-2 pl-2 '>Sign In</button>
+            </div>
         </div>
-        <div className="md:hidden flex items-center">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-white focus:outline-none">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
-            </svg>
-          </button>
-        </div>
-      </div>
-      {isOpen && (
-        <div className="md:hidden mt-2 space-y-2">
-          <a href="#" className="block text-white">Home</a>
-          <a href="#" className="block text-white">About</a>
-          <a href="#" className="block text-white">Services</a>
-          <a href="#" className="block text-white">Contact</a>
-        </div>
-      )}
-    </nav>
-  );
+    );
 };
 
 export default Navbar;
