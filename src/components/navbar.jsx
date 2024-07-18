@@ -9,7 +9,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className='main sticky top-0 z-10 flex justify-between bg-purple-50 p-1 pb-2 pt-2'>
+        <div className='main sticky top-0 z-10 flex justify-between bg-purple-50 p-1 pb-2 pt-2 h-14'>
             <div className="hamburger p-3 sm:hidden" onClick={toggleMenu}>
                 <div className="line w-3 h-0.5 m-0.5 bg-black"></div>
                 <div className="line w-3 h-0.5 m-0.5 bg-black"></div>
@@ -30,8 +30,8 @@ const Navbar = () => {
                     <li className='hover:bg-purple-100 p-2 rounded-md'><a href="#">Login</a></li>
                 </ul>
             </div>
-            <div className="signup mr-3 mt-1 ">
-                <button className='bg-purple-300 p-1 text-sm rounded-xl pr-2 pl-2 '>Sign In</button>
+            <div className="signup mr-3 p-1 ">
+                <button className='bg-purple-300 p-1 text-sm rounded-xl px-3 py-1.5 '>Sign In</button>
             </div>
         </div>
     );
