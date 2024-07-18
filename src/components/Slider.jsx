@@ -24,7 +24,7 @@ const Slider = () => {
       {slides.map((slide, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0' }`}
         >
           <img src={slide.image} alt={`Slide ${index}`} className="w-full h-full object-cover"/>
           <div className="absolute inset-0 flex  bg-black bg-opacity-50">
