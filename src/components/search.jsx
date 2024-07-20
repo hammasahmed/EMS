@@ -2,13 +2,13 @@ import React from 'react';
 
 const Search = () => {
   return (
-    <div className="absolute bottom-32 left-0 w-full p-4 flex justify-center gap-5 ">
-      <select className="bg-white p-2 rounded w-[15vw]">
+    <div className="absolute bottom-[20vh] left-0 w-full p-4 flex justify-center items-center flex-col  sm:flex-row  gap-5  ">
+      <select className="bg-white p-2 rounded w-[70vw] sm:w-[15vw]">
         <option value="option1">Select Service</option>
         <option value="option2">Venue</option>
         <option value="option3">Catering</option>
       </select>
-      <select className="bg-white p-2 rounded w-[15vw]">
+      <select className="bg-white p-2 rounded w-[70vw] sm:w-[15vw]">
       <option value="" disabled selected>Select The City</option>
     <option value="Islamabad">Islamabad</option>
     <option value="" disabled>Punjab Cities</option>
@@ -252,7 +252,7 @@ const Search = () => {
     <option value="Zhob">Zhob</option>
     <option value="Ziarat">Ziarat</option>
       </select>
-      <button className='bg-white px-5 rounded-lg hover:bg-slate-800 hover:text-white'>Search</button>
+      <button className='bg-white px-5 rounded-lg hover:bg-slate-800 hover:text-white w-28 h-10'>Search</button>
     </div>
   );
 }

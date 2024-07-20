@@ -136,6 +136,12 @@ const Catalog = ({ heading, title, images, descriptions }) => {
         <Card key={index} images={images} />
       ))}
       {/* <div class="block lg:hidden z-10"><h1 className='text-white'>chal betA SELFIE LELE</h1></div> */}
+      <div className="card flex flex-wrap gap-y-14 justify-around  lg:hidden  ">
+      {images.map((image, index) => (
+        <img key={index} src={image} alt={`service ${index}`} className='w-[80vw] md:w-[40vw] rounded-3xl' />
+      ))}
+    </div>
+    
     </section>
   );
 };

@@ -3,11 +3,7 @@ import React from 'react'
 const Card = (images) => {
   return (
     <>
-    <div className="card">
-      {images.map((image, index) => (
-        <img key={index} src={image} alt={`service ${index}`} />
-      ))}
-    </div>
+    
     
     </>
     // <div className="flex flex-wrap justify-around gap-6 lg:hidden ">
