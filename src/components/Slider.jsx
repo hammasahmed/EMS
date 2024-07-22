@@ -28,7 +28,7 @@ const Slider = () => {
         >
           <img src={slide.image} alt={`Slide ${index}`} className="w-full h-full object-cover"/>
           <div className="absolute inset-0 flex  bg-black bg-opacity-50">
-            <h1 className="text-6xl mt-[15vh] text-yellow-400 sm:text-8xl  font-bold sm:mt-[20vh] ml-[10vw] font-sans  tracking-widest ">{slide.text}</h1>
+            <h1 className="text-6xl mt-[15vh] text-yellow-400 sm:text-8xl  font-bold sm:mt-[20vh] ml-[10vw] font-sans  tracking-widest stroke-white">{slide.text}</h1>
           </div>
         </div>
       ))}
