@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import logo from '../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -32,8 +33,8 @@ const Navbar = () => {
                     <li className='hover:bg-purple-100 p-2 rounded-md'><a href="#">Login</a></li>
                 </ul>
             </div>
-            <div className="signup mr-3 p-1">
-                <button className='bg-purple-300 p-1 text-sm rounded-xl px-3 py-1.5 hover:bg-purple-950 hover:text-white' >Sign In</button>
+            <div className="signup ">
+            <Link to="/login">Login</Link>
             </div>
         </div>
     );

@@ -1,12 +1,10 @@
-// ./src/SignUpForm.js
+// ./src/LoginForm.js
 import React, { useState } from 'react';
 
-const SignUpForm = () => {
+const LoginForm = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    firstName: '',
-    lastName: '',
   });
 
   const handleChange = (e) => {
@@ -25,9 +23,9 @@ const SignUpForm = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4 text-center">Sign Up</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Log In</h2>
         <p className="text-center mb-4">
-          Already have an account? <a href="#" className="text-blue-500">Log in</a>
+          Don't have an account? <a href="#" className="text-green-500">Sign up</a>
         </p>
         <div className="flex justify-around mb-4">
           <button className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full">
@@ -61,31 +59,11 @@ const SignUpForm = () => {
             onChange={handleChange}
             className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg"
           />
-          <input
-            type="text"
-            name="firstName"
-            placeholder="first name"
-            value={formData.firstName}
-            onChange={handleChange}
-            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg"
-          />
-          <input
-            type="text"
-            name="lastName"
-            placeholder="last name"
-            value={formData.lastName}
-            onChange={handleChange}
-            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg"
-          />
-          <button type="submit" className="w-full bg-green-500 text-white py-2 rounded-lg">
-            Sign Up
-          </button>
-          <p className="text-center text-gray-600 text-sm mt-4">
-            By signing up you agree to our <a href="#" className="text-blue-500">Terms of Service</a> and <a href="#" className="text-blue-500">Privacy Policy</a>
-          </p>
-          <div className="flex items-center mt-4">
-            <input type="checkbox" id="news" name="news" className="mr-2"/>
-            <label htmlFor="news" className="text-sm">Email me with news and updates</label>
+          <div className="flex justify-between items-center mb-4">
+            <a href="#" className="text-sm text-blue-500">Forgot Password?</a>
+            <button type="submit" className="bg-green-500 text-white py-2 px-4 rounded-lg">
+              Login
+            </button>
           </div>
         </form>
       </div>
@@ -93,4 +71,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default LoginForm;
