@@ -13,7 +13,9 @@ const Details = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        const foundListing = data.find(item => item._id === parseInt(id)); // Find listing by ID
+        console.log('Fetched data:', data);
+        const foundListing = data.find(item => item._id.toString() === id);
+        console.log('Found listing:', foundListing);
         setListing(foundListing);
       } catch (error) {
         console.error('Error fetching listing details:', error);

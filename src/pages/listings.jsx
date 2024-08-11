@@ -45,7 +45,7 @@
 //             const cityMatch = selectedCity ? listing.city === selectedCity : true;
 //             const priceMatch = selectedPrice ? 
 //                 (selectedPrice === '201' ? listing.price > 200 : listing.price <= parseInt(selectedPrice)) : true;
-            
+
 //             return cityMatch && priceMatch;
 //         });
 
@@ -141,7 +141,7 @@
 import React, { useEffect, useState } from 'react';
 import Listing from '../components/listing';
 import ReactPaginate from 'react-paginate';
-
+import { Link } from 'react-router-dom';
 const Listings = () => {
     const [listings, setListings] = useState([]);
     const [filteredListings, setFilteredListings] = useState([]);
@@ -151,7 +151,12 @@ const Listings = () => {
     const [selectedPrice, setSelectedPrice] = useState('');
     const [selectedServiceType, setSelectedServiceType] = useState(''); // New state for service type
     const [cities, setCities] = useState([]);
-    const [serviceTypes] = useState(['venue', 'catering']); // Hard-coded service types
+    const [serviceTypes, setserviceTypes] = useState([]); // Hard-coded service types 
+    const [venueTypes, setvenueTypes] = useState([]);
+    const [cateringTypes, setcateringTypes] = useState([]);
+    const [selectedVenueType, setSelectedVenueType] = useState('');
+    const [selectedCateringType, setSelectedCateringType] = useState('');
+   
     const [priceRanges] = useState([
         { label: 'Any', value: '' },
         { label: 'Under $50', value: '50' },
@@ -161,6 +166,7 @@ const Listings = () => {
     ]);
 
     useEffect(() => {
+        
         const fetchListings = async () => {
             try {
                 const response = await fetch('/listings.json');
@@ -174,27 +180,40 @@ const Listings = () => {
                 // Extract unique cities from data
                 const uniqueCities = [...new Set(data.map(listing => listing.city))];
                 setCities(uniqueCities);
+                const uniqueservice = [...new Set(data.map(listing => listing.serviceType))];
+                setserviceTypes(uniqueservice);
+                const uniqueVservice = [...new Set(data.map(listing => listing.venueType))];
+                setvenueTypes(uniqueVservice);
+                const uniqueCservice = [...new Set(data.map(listing => listing.cateringType))];
+                setcateringTypes(uniqueCservice);
             } catch (error) {
                 console.error('Error fetching listings:', error);
             }
         };
-
+        
         fetchListings();
+        
     }, []);
 
     useEffect(() => {
         const filtered = listings.filter(listing => {
             const cityMatch = selectedCity ? listing.city === selectedCity : true;
-            const priceMatch = selectedPrice ? 
+            const priceMatch = selectedPrice ?
                 (selectedPrice === '201' ? listing.price > 200 : listing.price <= parseInt(selectedPrice)) : true;
             const serviceTypeMatch = selectedServiceType ? listing.serviceType === selectedServiceType : true;
-            
-            return cityMatch && priceMatch && serviceTypeMatch;
+             // Only apply venueType filter if the service type is "venue"
+        const venueTypeMatch = selectedServiceType === 'venue' ?
+        (selectedVenueType ? listing.venueType === selectedVenueType : true) : true;
+
+    // Only apply cateringType filter if the service type is "catering"
+    const cateringTypeMatch = selectedServiceType === 'catering' ?
+        (selectedCateringType ? listing.cateringType === selectedCateringType : true) : true;
+            return cityMatch && priceMatch && serviceTypeMatch && venueTypeMatch && cateringTypeMatch;
         });
 
         setFilteredListings(filtered);
         setCurrentPage(0); // Reset to first page when filtering
-    }, [selectedCity, selectedPrice, selectedServiceType, listings]);
+    }, [selectedCity, selectedPrice, selectedServiceType, selectedVenueType, selectedCateringType,  listings]);
 
     const indexOfLastListing = (currentPage + 1) * itemsPerPage;
     const indexOfFirstListing = indexOfLastListing - itemsPerPage;
@@ -205,10 +224,10 @@ const Listings = () => {
     };
 
     return (
-        <div> 
-            <div className="flex gap-8  flex-wrap my-[10vh] ">
-                <div className=''>
-                    <label htmlFor="city" className=" text-sm font-medium text-gray-700 p-3 ">City</label>
+        <div>
+            <div className="flex gap-8 flex-wrap my-[10vh]">
+                <div>
+                    <label htmlFor="city" className="text-sm font-medium text-gray-700 p-3">City</label>
                     <select
                         id="city"
                         value={selectedCity}
@@ -223,7 +242,7 @@ const Listings = () => {
                 </div>
 
                 <div>
-                    <label htmlFor="price" className=" text-sm font-medium text-gray-700 p-4">Price</label>
+                    <label htmlFor="price" className="text-sm font-medium text-gray-700 p-4">Price</label>
                     <select
                         id="price"
                         value={selectedPrice}
@@ -237,7 +256,7 @@ const Listings = () => {
                 </div>
 
                 <div>
-                    <label htmlFor="serviceType" className=" text-sm font-medium text-gray-700 p-4">Service Type</label>
+                    <label htmlFor="serviceType" className="text-sm font-medium text-gray-700 p-4">Service Type</label>
                     <select
                         id="serviceType"
                         value={selectedServiceType}
@@ -250,23 +269,71 @@ const Listings = () => {
                         ))}
                     </select>
                 </div>
-            </div>
 
+                {/* Conditional Rendering for Venue Subcategories */}
+                {selectedServiceType === "venue" && (
+                    <div>
+                        <label htmlFor="venueType" className="text-sm font-medium text-gray-700 p-4">Venue Type</label>
+                        <select
+                            id="venueType"
+                            value={selectedVenueType}
+                            onChange={(e) => setSelectedVenueType(e.target.value)}
+                            className="w-80 p-2 border border-gray-300 rounded-md"
+                        >
+                            {/* <option value="">Any</option>
+                <option value="sportsArena">Sports Arena</option>
+                <option value="banquetHall">Banquet Hall</option>
+                <option value="marquee">Marquee</option>
+                <option value="conferenceHalls">Conference Halls</option>
+                <option value="hotels">Hotels</option> */}
+                            {venueTypes.map(vtype => (
+                                <option key={vtype} value={vtype}>{vtype}</option>
+                            ))}
+                        </select>
+                    </div>
+                )}
+
+                {/* Conditional Rendering for Catering Subcategories */}
+                {selectedServiceType === "catering" && (
+                    <div>
+                        <label htmlFor="cateringType" className="text-sm font-medium text-gray-700 p-4">Catering Type</label>
+                        <select
+                            id="cateringType"
+                            value={selectedCateringType}
+                            onChange={(e) => setSelectedCateringType(e.target.value)}
+                            className="w-80 p-2 border border-gray-300 rounded-md"
+                        >
+                            {/* <option value="">Any</option>
+                <option value="buffet">Buffet</option>
+                <option value="plated">Plated</option>
+                <option value="familyStyle">Family Style</option>
+                <option value="packed">Packed</option> */}
+
+                            {cateringTypes.map(ctype => (
+                                <option key={ctype} value={ctype}>{ctype}</option>
+                            ))}
+                        </select>
+                    </div>
+                )}
+            </div>
+{/*THIS IS WHERE THE WHOLE LISTING SHOWS UP */}
             <div className="listings-page flex flex-wrap justify-evenly bg-black">
                 {currentListings.length > 0 ? (
                     currentListings.map(listing => (
-                        <Listing
-                            key={listing._id}
-                            title={listing.title}
-                            description={listing.description}
-                            price={listing.price}
-                            imageUrl={listing.imageUrl}
-                        />
+                        <Link to={`/details/${listing._id}`} key={listing._id}>
+                            <Listing
+                                title={listing.title}
+                                description={listing.description}
+                                price={listing.price}
+                                imageUrl={listing.imageUrl}
+                            />
+                        </Link>
                     ))
                 ) : (
                     <p className="col-span-3 text-center text-red-700">No listings found</p>
                 )}
             </div>
+
 
             <ReactPaginate
                 previousLabel={'← Previous'}

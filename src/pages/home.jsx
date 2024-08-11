@@ -15,9 +15,10 @@ const Home = () => {
             <Featured_services />
             <Testimonial />
             <Footer />
-            <SignUpForm />
             
-            <ListingsPage /> 
+            
+            
+            
             </>
   )
 }

@@ -5,8 +5,11 @@
         "description": "A beautiful 3-bedroom apartment with sea view.",
         "price": 150,
         "city": "Karachi",
-        "imageUrl": "https://picsum.photos/seed/1/300/200",
-        "serviceType": "venue"
+        "imageUrl": "https://picsum.photos/seed/1/640/360",
+        "serviceType": "venue",
+        "venueType": "Sports Arena"
+        
+        
     },
     {
         "_id": "2",
@@ -141,7 +144,9 @@
         "price": 500,
         "city": "Karachi",
         "imageUrl": "https://picsum.photos/seed/16/300/200",
-        "serviceType": "catering"
+        "serviceType": "catering",
+        "cateringType": "Family Style"
+
     },
     {
         "_id": "17",

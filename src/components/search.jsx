@@ -1,13 +1,51 @@
 import React from 'react';
-
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 const Search = () => {
+  const [selectedService, setSelectedService] = useState("");
+  
+  const handleServiceChange = (event) => {
+    setSelectedService(event.target.value);
+  };
   return (
     <div className="absolute bottom-[20vh] left-0 w-full p-4 flex justify-center items-center flex-col  sm:flex-row  gap-5  ">
-      <select className="bg-white p-2 rounded w-[70vw] sm:w-[15vw]">
+      
+      <select
+        className="bg-white p-2 rounded w-[70vw] sm:w-[15vw]"
+        onChange={handleServiceChange}
+        value={selectedService}
+      >
+        <option value="">Select Service</option>
+        <option value="venue">Venue</option>
+        <option value="catering">Catering</option>
+      </select>
+
+      {selectedService === "venue" && (
+        <select className="bg-white p-2 rounded w-[70vw] sm:w-[15vw] ">
+          <option value="beach">Any</option>
+          <option value="beach">Sports Arena</option>
+          <option value="hall">Banquet Hall</option>
+          <option value="garden">Marquee</option>
+          <option value="beach">Conference Halls</option>
+          <option value="beach">Hotels</option>
+        </select>
+      )}
+
+      {selectedService === "catering" && (
+        <select className="bg-white p-2 rounded w-[70vw] sm:w-[15vw]">
+          <option value="plated">Any</option>
+          <option value="buffet">Buffet</option>
+          <option value="plated">Plated</option>
+          <option value="familyStyle">Family Style</option>
+          <option value="plated">Packed</option>
+          
+        </select>
+      )}
+      {/* <select className="bg-white p-2 rounded w-[70vw] sm:w-[15vw]">
         <option value="option1">Select Service</option>
         <option value="option2">Venue</option>
         <option value="option3">Catering</option>
-      </select>
+      </select> */}
       <select className="bg-white p-2 rounded w-[70vw] sm:w-[15vw]">
       <option value="" disabled selected>Select The City</option>
     <option value="Islamabad">Islamabad</option>
@@ -252,9 +290,103 @@ const Search = () => {
     <option value="Zhob">Zhob</option>
     <option value="Ziarat">Ziarat</option>
       </select>
-      <button className='bg-white px-5 rounded-lg hover:bg-slate-800 hover:text-white w-28 h-10'>Search</button>
+      <button className='bg-white px-5 rounded-lg hover:bg-slate-800 hover:text-white w-28 h-10'> <Link to="/listings">Search</Link></button>
     </div>
   );
 }
 
 export default Search;
+
+
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+
+// const HomePage = () => {
+//     const [selectedService, setSelectedService] = useState('');
+//     const [selectedVenueType, setSelectedVenueType] = useState('');
+//     const [selectedCateringType, setSelectedCateringType] = useState('');
+//     const [selectedCity, setSelectedCity] = useState('');
+//     const navigate = useNavigate();
+
+//     const handleSearch = () => {
+//         const params = new URLSearchParams();
+
+//         if (selectedService) params.append('service', selectedService);
+//         if (selectedService === 'venue' && selectedVenueType) params.append('venueType', selectedVenueType);
+//         if (selectedService === 'catering' && selectedCateringType) params.append('cateringType', selectedCateringType);
+//         if (selectedCity) params.append('city', selectedCity);
+
+//         navigate(`/listings?${params.toString()}`);
+//     };
+
+//     return (
+//         <div>
+//             {/* Your existing filter dropdowns */}
+//             <select
+//                 className="bg-white p-2 rounded w-[70vw] sm:w-[15vw]"
+//                 onChange={(e) => setSelectedService(e.target.value)}
+//                 value={selectedService}
+//             >
+//                 <option value="">Select Service</option>
+//                 <option value="venue">Venue</option>
+//                 <option value="catering">Catering</option>
+//             </select>
+
+//             {selectedService === "venue" && (
+//                 <select
+//                     className="bg-white p-2 rounded w-[70vw] sm:w-[15vw]"
+//                     onChange={(e) => setSelectedVenueType(e.target.value)}
+//                     value={selectedVenueType}
+//                 >
+//                     <option value="">Any</option>
+//                     <option value="sportsArena">Sports Arena</option>
+//                     <option value="banquetHall">Banquet Hall</option>
+//                     <option value="marquee">Marquee</option>
+//                     <option value="conferenceHalls">Conference Halls</option>
+//                     <option value="hotels">Hotels</option>
+//                 </select>
+//             )}
+
+//             {selectedService === "catering" && (
+//                 <select
+//                     className="bg-white p-2 rounded w-[70vw] sm:w-[15vw]"
+//                     onChange={(e) => setSelectedCateringType(e.target.value)}
+//                     value={selectedCateringType}
+//                 >
+//                     <option value="">Any</option>
+//                     <option value="buffet">Buffet</option>
+//                     <option value="plated">Plated</option>
+//                     <option value="familyStyle">Family Style</option>
+//                     <option value="packed">Packed</option>
+//                 </select>
+//             )}
+
+//             <select
+//                 className="bg-white p-2 rounded w-[70vw] sm:w-[15vw]"
+//                 onChange={(e) => setSelectedCity(e.target.value)}
+//                 value={selectedCity}
+//             >
+//                 <option value="" disabled selected>Select The City</option>
+//                 <option value="Islamabad">Islamabad</option>
+//                 <option value="" disabled>Punjab Cities</option>
+//                 <option value="Ahmed Nager Chatha">Ahmed Nager Chatha</option>
+//                 <option value="Ahmadpur East">Ahmadpur East</option>
+//                 <option value="Ali Khan Abad">Ali Khan Abad</option>
+//                 <option value="Alipur">Alipur</option>
+//                 <option value="Arifwala">Arifwala</option>
+//                 <option value="Attock">Attock</option>
+//                 <option value="Bhera">Bhera</option>
+//                 <option value="Bhalwal">Bhalwal</option>
+//             </select>
+
+//             <button
+//                 className="bg-white px-5 rounded-lg hover:bg-slate-800 hover:text-white w-28 h-10"
+//                 onClick={handleSearch}
+//             >
+//                 Search
+//             </button>
+//         </div>
+//     );
+// };
+
+// export default HomePage;
