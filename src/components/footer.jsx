@@ -9,7 +9,7 @@ const Footer = () => {
           <h2 className="text-2xl text-white mb-4">EventZilla - Your Personal Event Planner</h2>
           <p className="text-gray-400 mb-4">Plan your Event with Us. EventZilla is free for all users</p>
           <div>
-            <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-purple-950">Register as a Vendor</button>
+            <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-purple-950 hover:rounded-full hover:border-slate-600 hover:border-[1px]">Register as a Vendor</button>
           </div>
           <div className="social flex space-x-4 mt-4">
             <i className="fab fa-facebook text-blue-600 text-2xl"></i>
@@ -35,7 +35,8 @@ const Footer = () => {
             placeholder="Enter Your Email"
             className="w-full p-2 bg-gray-700 border border-gray-600 rounded mb-4"
           />
-          <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-purple-950">Subscribe</button>
+          <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-purple-950 hover:rounded-full hover:border-slate-600 hover:border-[1px]">Subscribe</button>
+          
         </div>
       </div>
       

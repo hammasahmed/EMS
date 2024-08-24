@@ -290,7 +290,7 @@ const Search = () => {
     <option value="Zhob">Zhob</option>
     <option value="Ziarat">Ziarat</option>
       </select>
-      <button className='bg-white px-5 rounded-lg hover:bg-slate-800 hover:text-white w-28 h-10'> <Link to="/listings">Search</Link></button>
+      <button className='bg-white px-5 rounded-lg hover:bg-purple-950 hover:text-white w-28 h-10 hover:rounded-full'> <Link to="/listings">Search</Link></button>
     </div>
   );
 }

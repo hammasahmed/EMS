@@ -12,6 +12,7 @@ import Login from './pages/login';
 import Home from './pages/home'
 import Signup from './pages/signup'
 import Listings from './pages/listings'
+import VendorDB from './pages/vendorDB'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
                     <Route path="/listings" element={<Listings />} />
                     
                     <Route path="/details/:id" element={<VenueDetail />} />
+                    <Route path="/vendordb" element={<VendorDB />} />
 
                 </Routes>
 
