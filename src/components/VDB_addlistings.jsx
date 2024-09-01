@@ -83,13 +83,14 @@ const CreateListing = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='flex flex-col w-[50%] gap-3 '>
       <input
         type="text"
         name="_id"
         placeholder="ID"
         value={listing._id}
         onChange={handleChange}
+        className='inputs border-2 h-10 rounded-xl pl-4'
       />
       <input
         type="text"
@@ -97,6 +98,7 @@ const CreateListing = () => {
         placeholder="Title"
         value={listing.title}
         onChange={handleChange}
+        className='inputs border-2 h-10 rounded-xl pl-4'
       />
       <input
         type="text"
@@ -104,6 +106,7 @@ const CreateListing = () => {
         placeholder="Description"
         value={listing.description}
         onChange={handleChange}
+        className='inputs border-2 h-10 rounded-xl pl-4'
       />
       <input
         type="number"
@@ -111,6 +114,7 @@ const CreateListing = () => {
         placeholder="Price"
         value={listing.price}
         onChange={handleChange}
+        className='inputs border-2 h-10 rounded-xl pl-4'
       />
       <input
         type="text"
@@ -118,6 +122,7 @@ const CreateListing = () => {
         placeholder="City"
         value={listing.city}
         onChange={handleChange}
+        className='inputs border-2 h-10 rounded-xl pl-4'
       />
       <input
         type="text"
@@ -125,6 +130,7 @@ const CreateListing = () => {
         placeholder="Image URL"
         value={listing.imageUrl}
         onChange={handleChange}
+        className='inputs border-2 h-10 rounded-xl pl-4'
       />
       <input
         type="text"
@@ -132,8 +138,10 @@ const CreateListing = () => {
         placeholder="Service Type"
         value={listing.serviceType}
         onChange={handleChange}
+        className='inputs border-2 h-10 rounded-xl pl-4'
       />
-      <button type="submit">Create Listing</button>
+      <button type="submit" className='transition-all border-purple-900 rounded-lg border-2 
+      hover:rounded-full w-32 h-10 hover:bg-purple-950 hover:text-white'>Create Listing</button>
     </form>
   );
 };

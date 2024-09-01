@@ -169,7 +169,7 @@ const Listings = () => {
         
         const fetchListings = async () => {
             try {
-                const response = await fetch('http://localhost:3000/listings');
+                const response = await fetch('/listings.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }

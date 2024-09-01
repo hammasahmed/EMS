@@ -20,25 +20,25 @@ const Sidebar = ({ setSelectedComponent }) => {
           className="mb-4 text-2xl flex items-center"
           onClick={() => setSelectedComponent('Home')}
         >
-          🏠 {isExpanded && 'Home'}
+          🎫 {isExpanded && 'My Listings'}
         </button>
         <button
           className="mb-4 text-2xl flex items-center"
           onClick={() => setSelectedComponent('Search')}
         >
-          🔍 {isExpanded && 'Search'}
+          🎪 {isExpanded && 'Bookings'}
         </button>
         <button
           className="mb-4 text-2xl flex items-center"
           onClick={() => setSelectedComponent('Settings')}
         >
-          ⚙️ {isExpanded && 'Settings'}
+          ➕ {isExpanded && 'Add Listings'}
         </button>
         <button
           className="mb-4 text-2xl flex items-center"
           onClick={() => setSelectedComponent('Setting')}
         >
-          🏠 {isExpanded && 'Home'}
+          🤵 {isExpanded && 'Profile'}
         </button>
       </div>
     </div>

@@ -8,7 +8,7 @@ const Details = () => {
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        const response = await fetch('/listings.json');
+        const response = await fetch('http://localhost:3000/listings/${id}');
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -31,7 +31,7 @@ const Details = () => {
 
   return (
     <div>
-      <h1>{listing.title}</h1>
+      <h1 className='text-4xl'>{listing.title}</h1>
       <img src={listing.imageUrl} alt={listing.title} />
       <p>{listing.description}</p>
       <p>Price: ${listing.price}</p>

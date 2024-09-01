@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 const SignUpForm = () => {
-  const [formData, setFormData] = useState({
+  const [user, setuser] = useState({
     email: '',
     password: '',
     firstName: '',
@@ -11,15 +11,32 @@ const SignUpForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setuser({
+      ...user,
       [name]: value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const response = await fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log('User created:', data);
+        // You can add logic here to handle what happens after a successful submission
+      } else {
+        console.error('Failed to create user');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -33,7 +50,7 @@ const SignUpForm = () => {
           <button className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full">
             <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google" />
           </button>
-          <button className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full">
+          <button className="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full">
             <img src="https://img.icons8.com/ios-filled/50/000000/facebook-new.png" alt="Facebook" />
           </button>
           <button className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full">
@@ -46,26 +63,10 @@ const SignUpForm = () => {
         <div className="text-center mb-4">OR</div>
         <form onSubmit={handleSubmit}>
           <input
-            type="email"
-            name="email"
-            placeholder="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg"
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg"
-          />
-          <input
             type="text"
             name="firstName"
             placeholder="first name"
-            value={formData.firstName}
+            value={user.firstName}
             onChange={handleChange}
             className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg"
           />
@@ -73,10 +74,40 @@ const SignUpForm = () => {
             type="text"
             name="lastName"
             placeholder="last name"
-            value={formData.lastName}
+            value={user.lastName}
             onChange={handleChange}
             className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg"
           />
+          <select
+            defaultValue="I am a"
+            name="role"
+            value={user.role}
+            onChange={handleChange}
+            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg"
+          >
+            <option value="user">User</option>
+            <option value="vendor">Vendor</option>
+          </select>
+
+
+          <input
+            type="email"
+            name="email"
+            placeholder="email"
+            value={user.email}
+            onChange={handleChange}
+            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            value={user.password}
+            onChange={handleChange}
+            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg"
+          />
+
+
           <button type="submit" className="w-full bg-green-500 text-white py-2 rounded-lg">
             Sign Up
           </button>
@@ -84,12 +115,12 @@ const SignUpForm = () => {
             By signing up you agree to our <a href="#" className="text-blue-500">Terms of Service</a> and <a href="#" className="text-blue-500">Privacy Policy</a>
           </p>
           <div className="flex items-center mt-4">
-            <input type="checkbox" id="news" name="news" className="mr-2"/>
+            <input type="checkbox" id="news" name="news" className="mr-2" />
             <label htmlFor="news" className="text-sm">Email me with news and updates</label>
           </div>
         </form>
       </div>
-    </div>
+    </div >
   );
 };
 
